@@ -1,12 +1,16 @@
 import { Injectable } from '@nestjs/common';
 import { orthographyCheckUseCase } from './use-cases';
 import { OrthographyDto } from './dtos';
+import { GoogleGenerativeAI } from '@google/generative-ai';
 
 @Injectable()
 export class GptService {
+  private gemmaAi = new GoogleGenerativeAI(process.env.GEMINI_API_KEY);
+
   async orthographyCheck(orthographyDto: OrthographyDto) {
-    return await orthographyCheckUseCase({
+    return await orthographyCheckUseCase(this.gemmaAi, {
       prompt: orthographyDto.prompt,
+      maxOutputTokens: orthographyDto.max_tokens,
     });
   }
 }
