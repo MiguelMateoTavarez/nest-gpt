@@ -1,6 +1,6 @@
 import { Injectable } from '@nestjs/common';
-import { orthographyCheckUseCase } from './use-cases';
-import { OrthographyDto } from './dtos';
+import { orthographyCheckUseCase, prosConsDiscusserUseCase } from './use-cases';
+import { OrthographyDto, ProsConsDiscusserDto } from './dtos';
 import { GoogleGenerativeAI } from '@google/generative-ai';
 
 @Injectable()
@@ -12,5 +12,9 @@ export class GptService {
       prompt: orthographyDto.prompt,
       maxOutputTokens: orthographyDto.max_tokens,
     });
+  }
+
+  async prosConsDiscusser({ prompt }: ProsConsDiscusserDto) {
+    return await prosConsDiscusserUseCase(this.gemmaAi, { prompt });
   }
 }

@@ -28,8 +28,7 @@ export const orthographyCheckUseCase = async (
     generationConfig: {
       responseMimeType: 'application/json',
       candidateCount: 1,
-      // stopSequences: ['x'],
-      // maxOutputTokens: maxOutputTokens,
+      maxOutputTokens: maxOutputTokens,
       temperature: 1.0,
     },
   });
