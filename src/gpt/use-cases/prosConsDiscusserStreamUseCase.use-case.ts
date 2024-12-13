@@ -16,9 +16,9 @@ export const prosConsDiscusserStreamUseCase = async (
             los pros y contras deben de estar en una lista,
         `,
     generationConfig: {
-      responseMimeType: 'application/json',
+      responseMimeType: 'text/plain',
       candidateCount: 1,
-      maxOutputTokens: 150,
+      maxOutputTokens: 500,
       temperature: 1.0,
     },
   });
