@@ -29,7 +29,11 @@ export class GptController {
     res.status(HttpStatus.OK);
 
     for await (const chunk of result.stream) {
+      if (res.writableEnded) {
+        break;
+      }
       const piece = chunk.text() || '';
+      process.stdout.write(piece);
       res.write(piece);
     }
 
