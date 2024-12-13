@@ -9,7 +9,7 @@ export const prosConsDiscusserUseCase = async (
   { prompt }: Options,
 ) => {
   const model = gemmaAi.getGenerativeModel({
-    model: 'gemini-1.5-flash',
+    model: 'gemini-1.5-pro',
     systemInstruction: `
             Se te dará una pregunta y tu tarea es dar una respuesta con pros y contras,
             la respuesta debe de ser en formato markdown,
@@ -18,7 +18,7 @@ export const prosConsDiscusserUseCase = async (
     generationConfig: {
       responseMimeType: 'application/json',
       candidateCount: 1,
-      maxOutputTokens: 150,
+      maxOutputTokens: 500,
       temperature: 1.0,
     },
   });
