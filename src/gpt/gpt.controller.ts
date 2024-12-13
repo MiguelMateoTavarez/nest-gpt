@@ -30,7 +30,6 @@ export class GptController {
 
     for await (const chunk of result.stream) {
       const piece = chunk.text() || '';
-      console.log(piece);
       res.write(piece);
     }
 
