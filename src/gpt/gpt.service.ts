@@ -6,6 +6,8 @@ import {
 } from './use-cases';
 import { OrthographyDto, ProsConsDiscusserDto } from './dtos';
 import { GoogleGenerativeAI } from '@google/generative-ai';
+import { TranslateDto } from './dtos/translate.dto';
+import { translateUseCase } from './use-cases/translate.use-case';
 
 @Injectable()
 export class GptService {
@@ -24,5 +26,9 @@ export class GptService {
 
   async prosConsDiscusserStream({ prompt }: ProsConsDiscusserDto) {
     return await prosConsDiscusserStreamUseCase(this.gemmaAi, { prompt });
+  }
+
+  async translate({ prompt, lang }: TranslateDto) {
+    return await translateUseCase(this.gemmaAi, { prompt, lang });
   }
 }
