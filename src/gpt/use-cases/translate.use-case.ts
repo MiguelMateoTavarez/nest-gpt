@@ -12,7 +12,15 @@ export const translateUseCase = async (
 ) => {
   const model = gemmaAi.getGenerativeModel({
     model: 'gemini-1.5-flash',
-    systemInstruction: `Traduce el siguiente texto al idioma ${lang}:${prompt}`,
+    systemInstruction: `
+      Traduce el siguiente texto al idioma ${lang}:${prompt}
+
+      Ejemplo de salida:
+      {
+        origin: string, // Texto original
+        message: string // Resultado de la traducción
+      }
+    `,
     generationConfig: {
       responseMimeType: 'application/json',
       candidateCount: 1,
